@@ -1,0 +1,81 @@
+<!doctype html>
+<html>
+<head>
+<meta charset="utf-8">
+<title>Stacked Area</title>
+<script src="../../js/jquery-3.2.1.min.js"></script>
+<script src="../../js/highcharts.js"></script>
+<script src="../../js/exporting.js"></script>
+<script>
+	$(function(){
+		
+		var chartVal = 2050;
+		
+		$('button').click(function(){
+			var chartVal = 2050;
+		});
+		
+		// Highchart starts
+		Highcharts.chart('container', {
+			chart: {
+				type: 'area'
+			},
+			title: {
+				text: ''
+			},
+			subtitle: {
+				text: 'Base Rate Tracker'
+			},
+			xAxis: {
+				allowDecimals: false,
+				labels: {
+					formatter: function () {
+						return this.value; // clean, unformatted number for year
+					}
+				}
+			},
+			yAxis: {
+				title: {
+					text: ''
+				},
+				labels: {
+					formatter: function () {
+						return this.value / 1000 + 'k';
+					}
+				}
+			},
+			tooltip: {
+				pointFormat: '{series.name} produced <b>{point.y:,.0f}</b><br/>warheads in {point.x}'
+			},
+			plotOptions: {
+				area: {
+					pointStart: 2016,
+					marker: {
+						enabled: false,
+						symbol: 'circle',
+						radius: 2,
+						states: {
+							hover: {
+								enabled: true
+							}
+						}
+					}
+				}
+			},
+			series: [{
+				name: 'Amend Your Repayment Amount',
+				 data: [740, 721, 618, 500, 435, 310, 299, 290, 300, 295, 140, 110, 100,80,20]
+			}, {
+				name: 'Amend Your Term',
+				data: [640, 521, 518, 400, 335, 269, 240, 230, 200, 195, 140, 0 ,null,null,null]
+			}]
+		});
+		
+	});
+</script>
+</head>
+
+<body>
+	<div id="container" style="min-width: 310px; height: 400px; margin: 0 auto"></div>
+</body>
+</html>
